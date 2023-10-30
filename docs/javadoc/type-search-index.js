@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"Forecast","l":"Common"},{"p":"Forecast","l":"ForecastDTO"},{"p":"Forecast","l":"Common.ForecastTechnique"},{"p":"Forecast","l":"MongoDB_RForecast"}];updateSearchResults();

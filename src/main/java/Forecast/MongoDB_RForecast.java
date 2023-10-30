@@ -5,14 +5,13 @@ import org.rosuda.REngine.REngineException;
 import org.rosuda.REngine.Rserve.RConnection;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Elastic_RForecast {
-    private String es_host;
-    private int es_port;
-    private String es_path;
-    private String es_user;
-    private String es_pwd;
+public class MongoDB_RForecast {
+    private String mongo_host;
+    private int mongo_port;
+    private String mongo_database;
+    private String mongo_user;
+    private String mongo_pwd;
     private String rserve_host;
     private int rserve_port;
     private RConnection rconnection = null;
@@ -20,22 +19,23 @@ public class Elastic_RForecast {
 
     /**
      * Connects with RServe and sources the script's functions to R
-     * @param es_host: IP or domain name of the elasticsearch instance containing the data
-     * @param es_port: Port of the elasticsearch instance containing the data
-     * @param es_path: (Optional, "" if there is no path) Path to the elasticsearch instance
-     * @param es_user: (to use if the elasticsearch is protected with basic auth.) Username to access the elasticsearch instance
-     * @param es_pwd: (to use if the elasticsearch is protected with basic auth.) Password to access the elasticsearch instance
+     * @param mongo_host: IP or domain name of the MongoDB instance containing the data
+     * @param mongo_port: Port of the MongoDB instance containing the data
+     * @param mongo_database: Name of the MongoDB database containing the data
+     * @param mongo_user: Username to access the MongoDB instance (to use if MongoDB is protected with basic auth)
+     * @param mongo_pwd: Password to access the MongoDB instance (to use if MongoDB is protected with basic auth)
      * @param Rfunctions_path: (On Rserve side) Path to the R scripts' file
      * @throws REngineException
      * @throws REXPMismatchException
      */
-    public Elastic_RForecast(String es_host, int es_port, String es_path, String es_user, String es_pwd, String Rfunctions_path)
+    public MongoDB_RForecast(String mongo_host, int mongo_port, String mongo_database, String mongo_user,
+                             String mongo_pwd, String Rfunctions_path)
             throws REngineException, REXPMismatchException {
-        this.es_host = es_host;
-        this.es_port = es_port;
-        this.es_path = es_path;
-        this.es_user = es_user;
-        this.es_pwd = es_pwd;
+        this.mongo_host = mongo_host;
+        this.mongo_port = mongo_port;
+        this.mongo_database = mongo_database;
+        this.mongo_user = mongo_user;
+        this.mongo_pwd = mongo_pwd;
         this.rserve_host = "127.0.0.1";
         this.rserve_port = 6311;
         this.Rfunctions_path = Rfunctions_path;
@@ -45,25 +45,25 @@ public class Elastic_RForecast {
 
     /**
      * Connects with RServe and sources the script's functions to R
-     * @param es_host: IP or domain name of the elasticsearch instance containing the data
-     * @param es_port: Port of the elasticsearch instance containing the data
-     * @param es_path: (Optional, "" if there is no path) Path to the elasticsearch instance
-     * @param es_user: (to use if the elasticsearch is protected with basic auth.) Username to access the elasticsearch instance
-     * @param es_pwd: (to use if the elasticsearch is protected with basic auth.) Password to access the elasticsearch instance
+     * @param mongo_host: IP or domain name of the MongoDB instance containing the data
+     * @param mongo_port: Port of the MongoDB instance containing the data
+     * @param mongo_database: Name of the MongoDB database containing the data
+     * @param mongo_user: Username to access the MongoDB instance (to use if MongoDB is protected with basic auth)
+     * @param mongo_pwd: Password to access the MongoDB instance (to use if MongoDB is protected with basic auth)
      * @param rserve_host: IP or domain name of RServe. Default is localhost
      * @param rserve_port: Port to use to access RServe. Default is 6311
      * @param Rfunctions_path: (On Rserve side) Path to the R scripts' file
      * @throws REXPMismatchException
      * @throws REngineException
      */
-    public Elastic_RForecast(String es_host, int es_port, String es_path, String es_user, String es_pwd,
-                             String rserve_host, int rserve_port, String Rfunctions_path)
+    public MongoDB_RForecast(String mongo_host, int mongo_port, String mongo_database, String mongo_user,
+                             String mongo_pwd, String rserve_host, int rserve_port, String Rfunctions_path)
             throws REXPMismatchException, REngineException {
-        this.es_host = es_host;
-        this.es_port = es_port;
-        this.es_path = es_path;
-        this.es_user = es_user;
-        this.es_pwd = es_pwd;
+        this.mongo_host = mongo_host;
+        this.mongo_port = mongo_port;
+        this.mongo_database = mongo_database;
+        this.mongo_user = mongo_user;
+        this.mongo_pwd = mongo_pwd;
         this.rserve_host = rserve_host;
         this.rserve_port = rserve_port;
         this.Rfunctions_path = Rfunctions_path;
@@ -74,20 +74,20 @@ public class Elastic_RForecast {
     /**
      *
      * Connects with RServe and sources the script's functions to R
-     * @param es_host: IP or domain name of the elasticsearch instance containing the data
-     * @param es_port: Port of the elasticsearch instance containing the data
-     * @param es_path: (Optional, "" if there is no path) Path to the elasticsearch instance
+     * @param mongo_host: IP or domain name of the MongoDB instance containing the data
+     * @param mongo_port: Port of the MongoDB instance containing the data
+     * @param mongo_database: Name of the MongoDB database containing the data
      * @param Rfunctions_path: (On Rserve side) Path to the R scripts' file
      * @throws REXPMismatchException
      * @throws REngineException
      */
-    public Elastic_RForecast(String es_host, int es_port, String es_path, String Rfunctions_path)
+    public MongoDB_RForecast(String mongo_host, int mongo_port, String mongo_database, String Rfunctions_path)
             throws REXPMismatchException, REngineException {
-        this.es_host = es_host;
-        this.es_port = es_port;
-        this.es_path = es_path;
-        this.es_user = "";
-        this.es_pwd = "";
+        this.mongo_host = mongo_host;
+        this.mongo_port = mongo_port;
+        this.mongo_database = mongo_database;
+        this.mongo_user = "";
+        this.mongo_pwd = "";
         this.rserve_host = "127.0.0.1";
         this.rserve_port = 6311;
         this.Rfunctions_path = Rfunctions_path;
@@ -97,22 +97,23 @@ public class Elastic_RForecast {
 
     /**
      * Connects with RServe and sources the script's functions to R
-     * @param es_host: IP or domain name of the elasticsearch instance containing the data
-     * @param es_port: Port of the elasticsearch instance containing the data
-     * @param es_path: (Optional, "" if there is no path) Path to the elasticsearch instance
+     * @param mongo_host: IP or domain name of the MongoDB instance containing the data
+     * @param mongo_port: Port of the MongoDB instance containing the data
+     * @param mongo_database: Name of the MongoDB database containing the data
      * @param rserve_host: IP or domain name of RServe. Default is localhost
      * @param rserve_port: Port to use to access RServe. Default is 6311
      * @param Rfunctions_path: (On Rserve side) Path to the R scripts' file
      * @throws REXPMismatchException
      * @throws REngineException
      */
-    public Elastic_RForecast(String es_host, int es_port, String es_path, String rserve_host, int rserve_port, String Rfunctions_path)
+    public MongoDB_RForecast(String mongo_host, int mongo_port, String mongo_database,
+                             String rserve_host, int rserve_port, String Rfunctions_path)
             throws REXPMismatchException, REngineException {
-        this.es_host = es_host;
-        this.es_port = es_port;
-        this.es_path = es_path;
-        this.es_user = "";
-        this.es_pwd = "";
+        this.mongo_host = mongo_host;
+        this.mongo_port = mongo_port;
+        this.mongo_database = mongo_database;
+        this.mongo_user = "";
+        this.mongo_pwd = "";
         this.rserve_host = rserve_host;
         this.rserve_port = rserve_port;
         this.Rfunctions_path = Rfunctions_path;
@@ -123,7 +124,7 @@ public class Elastic_RForecast {
     private void initializeR() throws REXPMismatchException, REngineException {
         this.rconnection = new RConnection(this.rserve_host, this.rserve_port);
         sourceTimeSeriesFunctions();
-        initESConnection();
+        initMongoDBConnection();
     }
 
     /**
@@ -133,31 +134,21 @@ public class Elastic_RForecast {
         this.rconnection.close();
     }
 
-    public String getModelsDirectory() throws REXPMismatchException, REngineException {
-        return Common.getModelsDirectory(this.rconnection);
-    }
-
-    public String getForecastsCacheDirectory() throws REXPMismatchException, REngineException {
-        return Common.getForecastsCacheDirectory(this.rconnection);
-    }
-
     private void sourceTimeSeriesFunctions() throws REXPMismatchException, REngineException {
-        //SOURCE TIME SERIES FUNCTIONS
         String sourceFunctionsStatement = "source(\"" + this.Rfunctions_path + "\")";
-
         Common.evaluateR(this.rconnection, sourceFunctionsStatement);
         System.out.println("TIME SERIES FUNCTIONS SOURCED");// + rResponseObject.asString());
     }
 
-    private void initESConnection() throws REXPMismatchException, REngineException {
-        String elasticSearchConnection = "elasticConnection(host = \"" + this.es_host + "\"," +
-                " path = \"" + this.es_path + "\"," +
-                " user = \"" + this.es_user + "\"," +
-                " pwd = \"" + this.es_pwd + "\"," +
-                " port = " + String.valueOf(this.es_port) + ")";
+    private void initMongoDBConnection() throws REXPMismatchException, REngineException {
+        String mongodbSearchConnection = "mongoDBConnection(host = \"" + this.mongo_host + "\"," +
+                " database = \"" + this.mongo_database + "\"," +
+                " username = \"" + this.mongo_user + "\"," +
+                " password = \"" + this.mongo_pwd + "\"," +
+                " port = " + String.valueOf(this.mongo_port) + ")";
 
-        Common.evaluateR(this.rconnection, elasticSearchConnection);
-        System.out.println("ELASTIC SEARCH CONNECTION SUCCESSFUL");// + rResponseObject.asString());
+        Common.evaluateR(this.rconnection, mongodbSearchConnection);
+        System.out.println("MONGODB SEARCH CONNECTION SUCCESSFUL");// + rResponseObject.asString());
     }
 
     /**
@@ -165,8 +156,8 @@ public class Elastic_RForecast {
      * @return Common.ForecastingTechnique[]
      */
     public Common.ForecastTechnique[] getForecastTechniques () throws REXPMismatchException, REngineException {
-        String scriptAvailableMethods[] = Common.getAvailableMethods(this.rconnection);
-        Common.ForecastTechnique availableToReturn[] = new Common.ForecastTechnique[scriptAvailableMethods.length];
+        String[] scriptAvailableMethods = Common.getAvailableMethods(this.rconnection);
+        Common.ForecastTechnique[] availableToReturn = new Common.ForecastTechnique[scriptAvailableMethods.length];
         for (int i = 0; i < scriptAvailableMethods.length; i++) {
             availableToReturn[i] = Common.ForecastTechnique.valueOf(scriptAvailableMethods[i]);
         }
@@ -177,7 +168,7 @@ public class Elastic_RForecast {
      * Fits multiple forecast models using a single forecasting technique and saves them to disk. This function should
      * be called periodically in order to keep the saved models up-to-date with recent data.
      * @param elementNames: array containing the elements for which the forecasting models will be fitted
-     * @param index: elasticsearch index containing the elements of "elementNames" array
+     * @param index: MongoDB collection containing the elements of "elementNames" array
      * @param tsFrequency: The value of argument frequency is used when the series is sampled an integral number
      *                  of times in each unit time interval. For example, one could use a value of 7 for frequency
      *                  when the data are sampled daily, and the natural time period is a week, or 12 when the data
@@ -189,10 +180,10 @@ public class Elastic_RForecast {
      * @throws REXPMismatchException
      * @throws REngineException
      */
-    public String[] multipleElementTrain(String elementNames[], String index, String tsFrequency,
-                                                          Common.ForecastTechnique technique)
+    public String[] multipleElementTrain(String[] elementNames, String index, String tsFrequency,
+                                         Common.ForecastTechnique technique)
             throws REXPMismatchException, REngineException {
-        String trainResult[] = new String[elementNames.length];
+        String[] trainResult = new String[elementNames.length];
 
         for (int i = 0; i < elementNames.length; i++) {
             try {
@@ -210,7 +201,7 @@ public class Elastic_RForecast {
      * exists a saved fitted model with the chosed technique. If it's found, it will be loaded and used to perform the
      * forecast. If not, the model will be fitted and saved to disk prior to the forecasting.
      * @param elementNames: array containing the elements for which the forecasting models will be fitted
-     * @param index: elasticsearch index containing the elements of "elementNames" array
+     * @param index: MongoDB collection containing the elements of "elementNames" array
      * @param tsFrequency: The value of argument frequency is used when the series is sampled an integral number
      *                  of times in each unit time interval. For example, one could use a value of 7 for frequency
      *                  when the data are sampled daily, and the natural time period is a week, or 12 when the data
@@ -224,8 +215,8 @@ public class Elastic_RForecast {
      * @throws REXPMismatchException
      * @throws REngineException
      */
-    public ArrayList<ForecastDTO> multipleElementForecast(String elementNames[], String index, String tsFrequency,
-                                                       String horizon, Common.ForecastTechnique technique)
+    public ArrayList<ForecastDTO> multipleElementForecast(String[] elementNames, String index, String tsFrequency,
+                                                          String horizon, Common.ForecastTechnique technique)
             throws REXPMismatchException, REngineException {
         ArrayList<ForecastDTO> forecasts = new ArrayList<>();
         for (String elementName : elementNames) {
@@ -238,7 +229,7 @@ public class Elastic_RForecast {
      * Fits an individual forecasting model using the selected forecasting technique and saves the model to disk.
      * This function should be called periodically in order to keep the saved model up-to-date with recent data.
      * @param elementName: Element for which the forecasting model will be fitted
-     * @param index: elasticsearch index containing the element to forecast ("elementName")
+     * @param index: MongoDB collection containing the element to forecast ("elementName")
      * @param tsFrequency: The value of argument frequency is used when the series is sampled an integral number
      *                  of times in each unit time interval. For example, one could use a value of 7 for frequency
      *                  when the data are sampled daily, and the natural time period is a week, or 12 when the data
@@ -302,7 +293,7 @@ public class Elastic_RForecast {
      * with the chosed technique. If it's found, it will be loaded and used to perform the forecast. If not, the model
      * will be fitted and saved to disk prior to the forecasting.
      * @param elementName: Element for which the forecasting model will be fitted
-     * @param index: elasticsearch index containing the element to forecast ("elementName")
+     * @param index: MongoDB collection containing the element to forecast ("elementName")
      * @param tsFrequency: The value of argument frequency is used when the series is sampled an integral number
      *                  of times in each unit time interval. For example, one could use a value of 7 for frequency
      *                  when the data are sampled daily, and the natural time period is a week, or 12 when the data

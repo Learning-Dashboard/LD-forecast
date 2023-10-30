@@ -21,13 +21,17 @@ public class Common {
      * PROPHET: Prophet Forecaster by Facebook
      */
     public enum ForecastTechnique {
-        ARIMA, ARIMA_FORCE_SEASONALITY, THETA, ETS, ETSDAMPED, BAGGEDETS, STL, NN, HYBRID, PROPHET
+        ARIMA,
+        ARIMA_FORCE_SEASONALITY,
+        THETA,
+        ETS,
+        ETSDAMPED,
+        BAGGEDETS,
+        STL,
+        NN,
+        HYBRID,
+        PROPHET
     }
-//    static String meanR = "$mean";
-//    static String upper1 = "$upper[,1]";
-//    static String upper2 = "$upper[,2]";
-//    static String lower1 = "$lower[,1]";
-//    static String lower = "$lower[,2]";
 
     static void evaluateR(RConnection rconnection, String Rcode)
             throws REXPMismatchException, REngineException {
@@ -70,16 +74,6 @@ public class Common {
 
             return forecast;
         }
-    }
-
-    static String getModelsDirectory(RConnection rconnection) throws REXPMismatchException, REngineException {
-        String getwd = "try(eval(paste(getwd(), directoryToSaveModels, sep = '/')))";
-        return getRvariable(rconnection, getwd)[0];
-    }
-
-    static String getForecastsCacheDirectory(RConnection rconnection) throws REXPMismatchException, REngineException {
-        String getwd = "try(eval(paste(getwd(), directoryToSaveForecasts, sep = '/')))";
-        return getRvariable(rconnection, getwd)[0];
     }
 
     static String[] getAvailableMethods(RConnection rconnection) throws REXPMismatchException, REngineException {
