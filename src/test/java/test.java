@@ -9,7 +9,7 @@ public class test {
         //TEST CONNECTION
         String vector = "c(1,2,3,4)";
         String test = rconnection.eval("meanVal=mean(" + vector + ")").asString();
-        System.out.println("RSERVE CONNECTION TEST. AVERAGING [1,2,3,4]: EXPECTED RESPONSE: 2.5 / RECEIVED: " + test);
+        System.out.println("RSERVE CONNECTION TEST. AVERAGING [1,2,3,4]: EXPECTED RESPONSE: 2.5, RECEIVED: " + test);
     }
 }
 
