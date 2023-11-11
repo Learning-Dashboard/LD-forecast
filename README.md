@@ -18,7 +18,7 @@ This is a Gradle project. You can use any IDE that supports Gradle to build it, 
 
 ```
 # Example: using Gradle wrapper to build with dependencies
-cd qrapids-forecast
+cd LD-forecast
 gradlew jar
 ```
 After the build is done the JAR file can be found at the __build/libs__ directory
